@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+service MovieService {
+    rpc GetMovieList(GetMovieListRequest) returns (GetMovieListResponse);
+    rpc GetMovieDetail(GetMovieDetailRequest) returns (GetMovieDetailResponse);
+}
+message Movie {
+    string id               = 1;
+    string name             = 2;
+    string originalName     = 3;
+    string slug             = 4;
+    string age              = 5;
+    string runtime          = 6;
+    string quality          = 7;
+    string rating           = 8;
+    string imdb             = 9;
+    string tmdb             = 10;
+    string relaseDate       = 11;
+    string trailer          = 12;
+    string episdoTotal      = 13;
+    string season           = 14;
+    repeated Genre genres   = 15;
+    repeated string images  = 16;
+    
+}
+message Genre {
+    string name = 1;
+    string slug = 2;
+}
+message Episode {
+    string serverId = 1;
+    string episode = 3;
+    string hls = 4;
+}
+message GetMovieListRequest {
+    string keyword = 1;
+    int32 offset = 2;
+    int32 page = 3;
+    int32 limit = 4;
+}
+message GetMovieListResponse {
+    repeated Movie movies = 1;
+}
+message GetMovieDetailRequest {
+    string slug = 1;
+}
+message GetMovieDetailResponse {
+    Movie movie = 1;
+    repeated Episode episodes = 2;
+}
